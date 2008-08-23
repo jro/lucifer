@@ -28,7 +28,7 @@ module Lucifer
     end
     
     def key_decrypt(value)
-      key.decrypt64(YAML.load value)
+      YAML.load(key.decrypt64 value)
     rescue OpenSSL::CipherError
       return nil
     end
