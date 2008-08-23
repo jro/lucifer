@@ -6,7 +6,7 @@ Why is it called Lucifer? http://en.wikipedia.org/wiki/Lucifer_(cipher)
 
 == Installation
 
-  ./script/plugin install git://github.com/jmckible/lucifer.git
+  ./script/plugin install git://github.com/jro/lucifer.git
   
 Lucifer looks for a key and salt in config/key.yml. See key.yml.example
 
