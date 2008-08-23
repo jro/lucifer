@@ -19,7 +19,7 @@ module Lucifer
       
       before_save :encrypt_columns
       
-      secret   = YAML.load_file(Rails.root + "/config/#{key_file}")[Rails.env].symbolize_keys
+      secret   = YAML.load_file(RAILS_ROOT + "/config/#{key_file}")[RAILS_ENV].symbolize_keys
       self.key = EzCrypto::Key.with_password secret[:key], secret[:salt], :algorithm => "aes256"
     end
     
