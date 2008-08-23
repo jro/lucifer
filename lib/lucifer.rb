@@ -10,7 +10,7 @@ module Lucifer
       
       cattr_accessor :encrypted_columns, :decrypted_columns, :key, :suffix, :key_file
       
-      self.suffix   = options[:suffix]   || '_b'
+      self.suffix   = options[:suffix]   || '_encrypted'
       self.key_file = options[:key_file] || 'key.yml'
       
       self.encrypted_columns = columns.select{|col| col.type == :binary && col.name.ends_with?(suffix)}.collect(&:name)  
@@ -20,7 +20,7 @@ module Lucifer
       before_save :encrypt_columns
       
       secret   = YAML.load_file(Rails.root + "/config/#{key_file}")[Rails.env].symbolize_keys
-      self.key = EzCrypto::Key.with_password secret[:key], secret[:salt]
+      self.key = EzCrypto::Key.with_password secret[:key], secret[:salt], :algorithm => "aes256"
     end
     
     def key_encrypt(value)
