@@ -24,11 +24,11 @@ module Lucifer
     end
     
     def key_encrypt(value)
-      key.encrypt value
+      key.encrypt64 value
     end
     
     def key_decrypt(value)
-      key.decrypt value
+      key.decrypt64 value
     rescue OpenSSL::CipherError
       return nil
     end
